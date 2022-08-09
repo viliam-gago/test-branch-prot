@@ -1,0 +1,16 @@
+name: Test trigger
+
+on:
+  pull_request:
+#   schedule:
+#     - cron: '15 13 * * *'
+
+
+jobs:
+  main-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: task1
+        run: echo "Ahoj!"
+      - name: show_time
+        run: date +"%T"

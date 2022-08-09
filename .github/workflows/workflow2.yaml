@@ -1,0 +1,14 @@
+name: Test trigger2
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  main-job-manual:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Jinej task
+        run: echo "Tak toto je jinej task!"
+      - name: Jinej cas
+        run: date +"%T"
