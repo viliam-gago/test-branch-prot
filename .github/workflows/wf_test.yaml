@@ -7,8 +7,8 @@ jobs:
   set-pr-status:
     runs-on: ubuntu-latest
     steps:
-      - name: echo something
-        run: ${{ github.event_name }}
+      # - name: echo something
+      #   run: ${{ github.event_name }}
       - name: Set PR Context Status to Success
         uses: gpuliyar/pr-status-action@v1.0.0
         with:
