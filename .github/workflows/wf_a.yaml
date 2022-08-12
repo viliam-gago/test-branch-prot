@@ -6,7 +6,7 @@ on:
 
 jobs:
   something:
-    runs-on: ubuntu latest
+    runs-on: ubuntu-latest
     steps:
       - name: echo AHOJ !
       - name: Set PR Context Status to Success
