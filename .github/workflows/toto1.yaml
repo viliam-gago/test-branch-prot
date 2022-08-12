@@ -22,6 +22,8 @@ jobs:
         run: echo "$(cut -d'/' -f3 <<< $GITHUB_REF )"
   
   set-pr-status-pending:
+    outputs: 
+      pr_id: ${{ steps.pr_id_output.outputs.pr_id }}
     needs: [main-job]
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
@@ -30,17 +32,23 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.token }}
     steps:
       - name: Save repo pull request number
-        run: echo "GH_PULL_REQUEST=$(cut -d'/' -f3 <<< $GITHUB_REF )" >> $GITHUB_ENV
+        run: echo "GH_PULL_REQUEST_ID=$(cut -d'/' -f3 <<< $GITHUB_REF )" >> $GITHUB_ENV
+      - name: pr_id_output
+        run: echo "::set-output name=pr_id::${{ env.GH_PULL_REQUEST_ID }}"
       - name: Set PR Context Status to PENDING
         uses: gpuliyar/pr-status-action@v1.0.0
         with:
           repository: viliam-gago/test-branch-prot
-          pr-number: ${{ env.GH_PULL_REQUEST }}
+          pr-number: ${{ env.GH_PULL_REQUEST_ID }}
           context: Pipeline status
           state: pending
           description: Waiting to be resolved.
 
-  # + jeste jeden job, ktery spusti monitoring notebook
+  start-test-pipeline-monitor:
+    needs: [set-pr-status-pending]
+    runs-on: ubuntu-latest     
+    steps:
+      - run echo ${{ needs.set-pr-status-pending.outputs.pr_id }}
 
 
 
