@@ -48,7 +48,8 @@ jobs:
     needs: set-pr-status-pending
     runs-on: ubuntu-latest     
     steps:
-      - run echo ${{ needs.set-pr-status-pending.outputs.pr_id }}
+      - name: Show output of prev   
+        run: echo ${{needs.set-pr-status-pending.outputs.pr_id}}
 
 
 
