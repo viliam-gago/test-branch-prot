@@ -18,22 +18,23 @@ jobs:
       - name: reference
         run: echo $GITHUB_REF
   
-  # set-pr-status:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: echo something
-  #     run: echo hello
-  #   - name: Set PR Context Status to Success
-  #     uses: gpuliyar/pr-status-action@v1.0.0
-  #     with:
-  #       repository: viliam-gago/test-branch-prot
-  #       pr-number: 4
-  #       context: main-job-manual
-  #       state: pending
-  #       description: Waiting to be resolved.
-  #     env:
-  #         # Default Github Token
-  #         GITHUB_TOKEN: ${{ secrets.token }}
+  set-pr-status:
+  needs: [main-job]
+    runs-on: ubuntu-latest
+    steps:
+    - name: echo something
+      run: echo hello
+    - name: Set PR Context Status to Success
+      uses: gpuliyar/pr-status-action@v1.0.0
+      with:
+        repository: viliam-gago/test-branch-prot
+        pr-number: 4
+        context: aaaa
+        state: pending
+        description: Waiting to be resolved.
+      env:
+          # Default Github Token
+          GITHUB_TOKEN: ${{ secrets.token }}
 
 
 
