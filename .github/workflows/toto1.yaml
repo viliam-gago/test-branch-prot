@@ -40,6 +40,8 @@ jobs:
           state: pending
           description: Waiting to be resolved.
 
+  # + jeste jeden job, ktery spusti monitoring notebook
+
 
 
     
