@@ -16,7 +16,7 @@ jobs:
       - name: show_time
         run: date +"%T"
       - name: reference
-        run: echo $GITHUB_REF
+        run: echo "$(cut -d'/' -f3 <<< $GITHUB_REF )"
   
   set-pr-status:
     needs: [main-job]
@@ -28,7 +28,7 @@ jobs:
       uses: gpuliyar/pr-status-action@v1.0.0
       with:
         repository: viliam-gago/test-branch-prot
-        pr-number: 7
+        pr-number: $GITHUB_REF
         context: aaaa
         state: pending
         description: Waiting to be resolved.
