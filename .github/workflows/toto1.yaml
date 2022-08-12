@@ -40,24 +40,6 @@ jobs:
           state: pending
           description: Waiting to be resolved.
 
-   # toto se triggerne kdyz monitoring chyti vysledek 
-   # pipeliny (v monitoring notebooku bude curl na workflow dispatch)
-  set-pr-status-result:
-    runs-on: ubuntu-latest
-    env:
-      #GitHub PAT here
-      GITHUB_TOKEN: ${{ secrets.token }}
-    steps:
-      - name: Set PR status -> SUCCESS
-        run: echo ${{ github.event_name == 'pull_request' }}
-      - name: Set PR Context Status to Success
-        uses: gpuliyar/pr-status-action@v1.0.0
-        with:
-          repository: viliam-gago/test-branch-prot
-          pr-number: ${{ inputs.pr_id }}
-          context: Pipeline status
-          state: ${{ inputs.result }}
-          description: Pipeline run ${{ inputs.result }}
 
 
     
