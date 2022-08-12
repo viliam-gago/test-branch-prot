@@ -23,7 +23,7 @@ jobs:
 
           # State to apply (Mandatory)
           # Any of the (error | failure | pending | success) states
-          state: pending
+          state: success
 
           # A short description of the status (Mandatory)
           description: This is so awesome to use a context in a PR
