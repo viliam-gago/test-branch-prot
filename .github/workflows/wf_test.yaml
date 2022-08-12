@@ -23,12 +23,11 @@ jobs:
 
           # State to apply (Mandatory)
           # Any of the (error | failure | pending | success) states
-          state: success
+          state: pending
 
           # A short description of the status (Mandatory)
           description: This is so awesome to use a context in a PR
-      - name: Event
-      run: echo ${{ github.event_name ==  }}
+
         env:
             # Default Github Token
             GITHUB_TOKEN: ${{ secrets.token }}
