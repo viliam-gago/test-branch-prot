@@ -2,24 +2,25 @@ name: Test trigger
 
 on:
   pull_request:
+    types: [opened]
 #   schedule:
 #     - cron: '15 13 * * *'
 
 
 jobs:
   
-  # main-job:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: task1
-  #       run: echo "Ahoj!"
-  #     - name: show_time
-  #       run: date +"%T"
-  #     - name: reference
-  #       run: echo $GITHUB_REF
+  main-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: task1
+        run: echo "Ahoj!"
+      - name: show_time
+        run: date +"%T"
+      - name: reference
+        run: echo $GITHUB_REF
   
-  open-pr-status:
-    # if: github.event_name == 'pull_request'
+  set-pr-status:
+    if: ${{ github.event.action }} == 'opened'
     runs-on: ubuntu-latest
     steps:
     - name: echo something
