@@ -20,7 +20,7 @@ jobs:
   #       run: echo $GITHUB_REF
   
   open-pr-status:
-    if: ${{ github.event.action }} == 'opened'
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
     - name: echo something
