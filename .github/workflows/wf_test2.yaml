@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  set-pr-status:
+  set-pr-status-success:
     runs-on: ubuntu-latest
     steps:
     - name: echo something
