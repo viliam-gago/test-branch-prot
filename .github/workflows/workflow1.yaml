@@ -15,4 +15,4 @@ jobs:
       - name: show_time
         run: date +"%T"
       - name: reference
-        run: echo ${{ env.GITHUB_REF }}
+        run: echo $GITHUB_REF
