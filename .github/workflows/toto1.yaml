@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Save repo pull request number
-      run: echo "GH_PULL_REQUEST=$(cut -d'/' -f3 <<< $GITHUB_REF )" >> GITHUB_ENV
+      run: echo "GH_PULL_REQUEST=$(cut -d'/' -f3 <<< $GITHUB_REF )" >> $GITHUB_ENV
     - name: Set PR Context Status to Success
       uses: gpuliyar/pr-status-action@v1.0.0
       with:
