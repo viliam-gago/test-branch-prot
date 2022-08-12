@@ -33,7 +33,8 @@ jobs:
     steps:
       - name: Save repo pull request number
         run: echo "GH_PULL_REQUEST_ID=$(cut -d'/' -f3 <<< $GITHUB_REF )" >> $GITHUB_ENV
-      - name: pr_id_output
+      - name: Prepare pr_id output
+        id: pr_id_output
         run: echo "::set-output name=pr_id::${{ env.GH_PULL_REQUEST_ID }}"
       - name: Set PR Context Status to PENDING
         uses: gpuliyar/pr-status-action@v1.0.0
