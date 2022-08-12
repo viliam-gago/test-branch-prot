@@ -1,4 +1,4 @@
-name: trigger pr wf
+name: trigger success
 
 on:
   workflow_dispatch:
