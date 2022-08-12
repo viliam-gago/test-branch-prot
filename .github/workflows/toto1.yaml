@@ -30,7 +30,7 @@ jobs:
         repository: viliam-gago/test-branch-prot
         pr-number: 7
         context: aaaa
-        state: failure
+        state: pending
         description: Waiting to be resolved.
       env:
           # Default Github Token
