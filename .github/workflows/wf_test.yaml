@@ -30,4 +30,4 @@ jobs:
 
       env:
         # Default Github Token
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: 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
