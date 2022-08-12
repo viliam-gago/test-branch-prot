@@ -5,10 +5,29 @@ on:
 
 
 jobs:
-  main-job-manual:
+  something:
     runs-on: ubuntu-latest
     steps:
-      - name: Jinej task
-        run: echo "Tak toto je jinej task!"
-      - name: Jinej cas
-        run: date +"%T"
+      - name: echo AHOJ !
+      - name: Set PR Context Status to Success
+        uses: gpuliyar/pr-status-action@v1.0.0
+        with:
+          # Repository name (Mandatory)
+          repository: viliam-gago/test-branch-prot
+
+          # PR Number  (Mandatory)
+          pr-number: 7
+
+          # Name the context to use in the PR  (Mandatory)
+          context: aaaa
+
+          # State to apply (Mandatory)
+          # Any of the (error | failure | pending | success) states
+          state: success
+
+          # A short description of the status (Mandatory)
+          description: This is so awesome to use a context in a PR
+
+        env:
+            # Default Github Token
+            GITHUB_TOKEN: ${{ secrets.token }}
