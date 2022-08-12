@@ -19,7 +19,7 @@ jobs:
         run: echo $GITHUB_REF
   
   set-pr-status:
-  needs: [main-job]
+    needs: [main-job]
     runs-on: ubuntu-latest
     steps:
     - name: echo something
