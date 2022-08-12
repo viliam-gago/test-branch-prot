@@ -19,11 +19,11 @@ jobs:
         pr-number: 4
 
         # Name the context to use in the PR  (Mandatory)
-        context: feature_branch2
+        context: main-job-manual
 
         # State to apply (Mandatory)
         # Any of the (error | failure | pending | success) states
-        state: pending
+        state: success
 
         # A short description of the status (Mandatory)
         description: This is so awesome to use a context in a PR
