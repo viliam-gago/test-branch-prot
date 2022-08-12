@@ -2,6 +2,9 @@ name: Test trigger
 
 on:
   workflow_dispatch:
+    inputs:
+      result: 
+      pr_id: 
   pull_request:
 
 jobs:
@@ -18,26 +21,43 @@ jobs:
       - name: reference
         run: echo "$(cut -d'/' -f3 <<< $GITHUB_REF )"
   
-  set-pr-status:
+  set-pr-status-pending:
     needs: [main-job]
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
+    env:
+      #GitHub PAT here
+      GITHUB_TOKEN: ${{ secrets.token }}
     steps:
-    - name: Event
-      run: echo ${{ github.event_name == 'pull_request' }}
-    - name: Save repo pull request number
-      run: echo "GH_PULL_REQUEST=$(cut -d'/' -f3 <<< $GITHUB_REF )" >> $GITHUB_ENV
-    - name: Set PR Context Status to Success
-      uses: gpuliyar/pr-status-action@v1.0.0
-      with:
-        repository: viliam-gago/test-branch-prot
-        pr-number: ${{ env.GH_PULL_REQUEST }}
-        context: aaaa
-        state: pending
-        description: Waiting to be resolved.
-      env:
-          #GitHub PAT here
-          GITHUB_TOKEN: ${{ secrets.token }}
+      - name: Save repo pull request number
+        run: echo "GH_PULL_REQUEST=$(cut -d'/' -f3 <<< $GITHUB_REF )" >> $GITHUB_ENV
+      - name: Set PR Context Status to PENDING
+        uses: gpuliyar/pr-status-action@v1.0.0
+        with:
+          repository: viliam-gago/test-branch-prot
+          pr-number: ${{ env.GH_PULL_REQUEST }}
+          context: Pipeline status
+          state: pending
+          description: Waiting to be resolved.
+
+   # toto se triggerne kdyz monitoring chyti vysledek 
+   # pipeliny (v monitoring notebooku bude curl na workflow dispatch)
+  set-pr-status-result:
+    runs-on: ubuntu-latest
+    env:
+      #GitHub PAT here
+      GITHUB_TOKEN: ${{ secrets.token }}
+    steps:
+      - name: Set PR status -> SUCCESS
+        run: echo ${{ github.event_name == 'pull_request' }}
+      - name: Set PR Context Status to Success
+        uses: gpuliyar/pr-status-action@v1.0.0
+        with:
+          repository: viliam-gago/test-branch-prot
+          pr-number: ${{ inputs.pr_id }}
+          context: Pipeline status
+          state: ${{ inputs.result }}
+          description: Pipeline run ${{ inputs.result }}
 
 
     
