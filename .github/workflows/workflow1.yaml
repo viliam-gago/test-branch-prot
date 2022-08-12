@@ -2,7 +2,6 @@ name: Test trigger
 
 on:
   pull_request:
-    types: [opened]
 #   schedule:
 #     - cron: '15 13 * * *'
 
