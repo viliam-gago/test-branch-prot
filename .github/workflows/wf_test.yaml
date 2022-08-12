@@ -16,7 +16,7 @@ jobs:
         repository: viliam-gago/test-branch-prot
 
         # PR Number  (Mandatory)
-        pr-number: 4
+        pr-number: 6
 
         # Name the context to use in the PR  (Mandatory)
         context: main-job-manual
