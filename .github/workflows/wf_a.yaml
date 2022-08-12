@@ -1,0 +1,11 @@
+name: somtehing else
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  something:
+    runs-on: ubuntu latest
+    steps:
+      - name: echo AHOJ !
