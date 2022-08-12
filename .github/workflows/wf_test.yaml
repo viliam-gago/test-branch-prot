@@ -4,30 +4,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  set-pr-status:
+  # toto se triggerne kdyz monitoring chyti vysledek 
+   # pipeliny (v monitoring notebooku bude curl na workflow dispatch)
+  set-pr-status-result:
     runs-on: ubuntu-latest
+    env:
+      #GitHub PAT here
+      GITHUB_TOKEN: ${{ secrets.token }}
     steps:
-      - name: echo something
-        run: echo ${{ github.event_name }}
+      - name: Set PR status -> SUCCESS
+        run: echo ${{ github.event_name == 'pull_request' }}
       - name: Set PR Context Status to Success
         uses: gpuliyar/pr-status-action@v1.0.0
         with:
-          # Repository name (Mandatory)
           repository: viliam-gago/test-branch-prot
-
-          # PR Number  (Mandatory)
-          pr-number: 7
-
-          # Name the context to use in the PR  (Mandatory)
-          context: aaaa
-
-          # State to apply (Mandatory)
-          # Any of the (error | failure | pending | success) states
-          state: success
-
-          # A short description of the status (Mandatory)
-          description: This is so awesome to use a context in a PR
-
-        env:
-            # Default Github Token
-            GITHUB_TOKEN: ${{ secrets.token }}
+          pr-number: ${{ inputs.pr_id }}
+          context: Pipeline status
+          state: ${{ inputs.result }}
+          description: Pipeline run ${{ inputs.result }}
