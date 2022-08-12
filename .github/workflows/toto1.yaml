@@ -20,10 +20,11 @@ jobs:
   
   set-pr-status:
     needs: [main-job]
+    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
     - name: Event
-      run: echo ${{ github.event_name }}
+      run: echo ${{ github.event_name ==  }}
     - name: Save repo pull request number
       run: echo "GH_PULL_REQUEST=$(cut -d'/' -f3 <<< $GITHUB_REF )" >> $GITHUB_ENV
     - name: Set PR Context Status to Success
