@@ -28,7 +28,7 @@ jobs:
       uses: gpuliyar/pr-status-action@v1.0.0
       with:
         repository: viliam-gago/test-branch-prot
-        pr-number: ${{ env.GH_PULL_REQUEST}}
+        pr-number: ${{ env.GH_PULL_REQUEST }}
         context: aaaa
         state: pending
         description: Waiting to be resolved.
