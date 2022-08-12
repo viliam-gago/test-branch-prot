@@ -1,9 +1,14 @@
 name: trigger pr wf
 
+on:
+  workflow_dispatch:
+
 jobs:
   set-pr-status:
     runs-on: ubuntu-latest
     steps:
+    - name: echo something
+      run: echo hello
     - name: Set PR Context Status to Success
       uses: gpuliyar/pr-status-action@v1.0.0
       with:
