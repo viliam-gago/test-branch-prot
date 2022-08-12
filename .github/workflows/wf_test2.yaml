@@ -19,7 +19,7 @@ jobs:
         pr-number: 7
 
         # Name the context to use in the PR  (Mandatory)
-        context: main-job-manual
+        context: aaa
 
         # State to apply (Mandatory)
         # Any of the (error | failure | pending | success) states
