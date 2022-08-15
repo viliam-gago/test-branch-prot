@@ -3,13 +3,14 @@ name: Show branch name WF
 on:
   pull_request:
 
+env:
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
 jobs:
-  show_bname:
-  env:
-    BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
-  runs-on: ubuntu-latest
-  steps:
-    - name: print bname
-      run: echo ${{ env.BRANCH_NAME }}
+  show_bname: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: print bname
+        run: echo ${{ env.BRANCH_NAME }}
 
 
