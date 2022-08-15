@@ -1,0 +1,13 @@
+name: Show branch name WF
+
+on:
+  pull_request:
+
+jobs:
+  show_bname:
+    runs-on: ubuntu-latest
+    steps:
+     - name: print bname
+       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+
+
