@@ -5,9 +5,11 @@ on:
 
 jobs:
   show_bname:
+  env:
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
     runs-on: ubuntu-latest
     steps:
      - name: print bname
-       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+       run: echo ${{ env.BRANCH_NAME }}
 
 
