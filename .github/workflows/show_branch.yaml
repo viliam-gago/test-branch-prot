@@ -1,0 +1,17 @@
+name: Prerelease
+
+on:
+  release:
+    type: ['prereleased']
+
+env:
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
+jobs:
+  show_bname: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: print bname
+        run: echo ${{ env.BRANCH_NAME }}
+
+
