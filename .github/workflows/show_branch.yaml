@@ -1,7 +1,8 @@
-name: Show branch name WF
+name: Prerelease
 
 on:
-  pull_request:
+  release:
+    type: ['prereleased']
 
 env:
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
